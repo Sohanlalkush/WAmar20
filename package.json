@@ -1,0 +1,26 @@
+{
+    "name": "whatsapp-bot-baileys",
+    "version": "1.0.0",
+    "description": "WhatsApp bot using Baileys library",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+    },
+    "dependencies": {
+        "@hapi/boom": "^10.0.1",
+        "@whiskeysockets/baileys": "^6.7.16",
+        "express": "^4.21.2",
+        "pino": "^8.14.1",
+        "pino-pretty": "^10.2.0",
+        "qrcode": "^1.5.4",
+        "qrcode-terminal": "^0.12.0",
+        "syntax-error": "^1.4.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
