@@ -1,4 +1,5 @@
-const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } = require('@whiskeysockets/baileys');
+const { default: makeWASocket, DisconnectReason } = require('@whiskeysockets/baileys');
+const { useMongoAuthState } = require('./mongoStore');
 const { Boom } = require('@hapi/boom');
 const express = require('express');
 const fs = require('fs');
@@ -17,7 +18,7 @@ let qrCodeData = null;
 let messageLog = [];
 
 async function startBot() {
-    const { state, saveCreds } = await useMultiFileAuthState(config.sessionsDir);
+    const { state, saveCreds } = await useMongoAuthState();
     
     const baileysLogger = pino({ level: 'silent' });
     

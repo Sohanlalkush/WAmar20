@@ -11,6 +11,7 @@
         "@hapi/boom": "^10.0.1",
         "@whiskeysockets/baileys": "^6.7.16",
         "express": "^4.21.2",
+        "mongoose": "^8.13.2",
         "pino": "^8.14.1",
         "pino-pretty": "^10.2.0",
         "qrcode": "^1.5.4",
