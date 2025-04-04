@@ -1,4 +1,4 @@
-const { default: makeWASocket, DisconnectReason } = require('@whiskeysockets/baileys');
+const { default: makeWASocket, DisconnectReason, fetchLatestBaileysVersion } = require('@whiskeysockets/baileys');
 const { useMongoAuthState } = require('./mongoStore');
 const { Boom } = require('@hapi/boom');
 const express = require('express');
@@ -18,6 +18,7 @@ let qrCodeData = null;
 let messageLog = [];
 
 async function startBot() {
+    const { version } = await fetchLatestBaileysVersion();
     const { state, saveCreds } = await useMongoAuthState();
     
     const baileysLogger = pino({ level: 'silent' });

@@ -47,12 +47,13 @@ const store = {
             }
         };
 
-        const creds = await readData('creds') || { };
-        
+        const creds = await readData('creds') || {};
+        const keys = await readData('keys') || {};
+
         return {
             state: {
                 creds,
-                keys: await readData('keys') || { }
+                keys
             },
             saveCreds: async () => {
                 await writeData(creds, 'creds');
@@ -61,4 +62,4 @@ const store = {
     }
 };
 
-module.exports = store;
+module.exports = { useMongoAuthState: store.useMongoAuthState };
