@@ -28,7 +28,25 @@ async function startBot() {
         auth: state,
         logger: baileysLogger,
         browser: [config.botName, "Chrome", config.botVersion],
-        getMessage: async () => undefined
+        getMessage: async () => undefined,
+        qrTimeout: 60000
+    });
+
+    // Log when QR code is received
+    sock.ev.on('connection.update', async ({ connection, lastDisconnect, qr }) => {
+        if(qr) {
+            logger.terminal('New QR Code received, please scan!');
+            qrCodeData = qr;
+        }
+        
+        if(connection === 'close') {
+            const shouldReconnect = (lastDisconnect?.error)?.output?.statusCode !== DisconnectReason.loggedOut;
+            if(shouldReconnect) {
+                startBot();
+            }
+        } else if(connection === 'open') {
+            logger.terminal('Bot Connected!');
+        }
     });
     
     sock.ev.on('connection.update', async (update) => {
